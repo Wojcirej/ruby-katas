@@ -1,4 +1,4 @@
-require 'row_sum_odd_numbers'
+require './katas/sum_of_odd_numbers/lib/row_sum_odd_numbers'
 
 RSpec.describe "#row_sum_odd_numbers" do
   subject { row_sum_odd_numbers(row_index) }

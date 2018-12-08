@@ -1,4 +1,4 @@
-require 'find_outlier'
+require './katas/parity_outlier/lib/find_outlier'
 
 RSpec.describe "#find_outlier" do
   subject { find_outlier(array) }
