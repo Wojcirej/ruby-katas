@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 require './lib/kata_generator'
-KataGenerator.call(ARGV[0])
+require './lib/generator_logger'
+KataGenerator.call(ARGV[0], GeneratorLogger.new)

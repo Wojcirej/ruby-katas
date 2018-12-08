@@ -1,85 +1,66 @@
-require 'colorize'
+require_relative 'generator_templates'
 class KataGenerator
+  include GeneratorTemplates
 
-  attr_reader :kata_name
-
-  def initialize(kata_name)
+  def initialize(kata_name, logger)
     @kata_name = kata_name
+    @logger = logger
+    @root_directory_path = "katas/#{kata_name}"
+    @readme_file_path = "katas/#{kata_name}/README.md"
+    @kata_lib_directory_path = "katas/#{kata_name}/lib"
+    @kata_definition_file_path = "katas/#{kata_name}/lib/#{kata_name}.rb"
+    @kata_spec_file_path = "spec/katas/#{kata_name}_spec.rb"
   end
 
-  def self.call(kata_name)
-    new(kata_name).call
+  def self.call(kata_name, logger)
+    new(kata_name, logger).call
   end
 
   def call
     create_kata_root_directory
+    logger.log_directory_creation(root_directory_path)
+
     generate_kata_read_me_file
+    logger.log_file_generation(readme_file_path)
+
     create_kata_lib_directory
+    logger.log_directory_creation(kata_lib_directory_path)
+
     generate_kata_definition_file
-    create_kata_spec_directory
+    logger.log_file_generation(kata_definition_file_path)
+
+    generate_kata_spec_file
+    logger.log_file_generation(kata_spec_file_path)
   end
 
   private
 
+  attr_reader :kata_name, :logger, :root_directory_path, :readme_file_path,
+  :kata_lib_directory_path, :kata_definition_file_path, :kata_spec_file_path
+
   def create_kata_root_directory
-    Dir.mkdir("katas/#{kata_name}")
-    puts("create".colorize(:green))
+    Dir.mkdir(root_directory_path)
   end
 
   def generate_kata_read_me_file
-    File.open("katas/#{kata_name}/README.md", "w+") do |f|
-      f.write(kata_read_me_template)
+    File.open(readme_file_path, "w+") do |file|
+      file.write(kata_read_me_template)
     end
-  end
-
-  def kata_read_me_template
-    read_me = <<EOF
-# #{kata_name}
-
-### Description
-<!-- Add description of the kata here -->
-
-### Examples
-<!-- Add examples/test cases here -->
-
-### Link to kata on codewars.com
-EOF
-  return read_me
   end
 
   def create_kata_lib_directory
-    Dir.mkdir("katas/#{kata_name}/lib")
+    Dir.mkdir(kata_lib_directory_path)
   end
 
   def generate_kata_definition_file
-    File.open("katas/#{kata_name}/lib/#{kata_name}.rb", "w+") do |f|
-      f.write(kata_definition_file_template)
+    File.open(kata_definition_file_path, "w+") do |file|
+      file.write(kata_definition_file_template)
     end
-  end
-
-  def kata_definition_file_template
-    kata_file_template = <<EOF
-def #{kata_name}
-  #TODO write your definition of method here...
-end
-EOF
   end
 
   def generate_kata_spec_file
-    File.open("spec/katas/#{kata_name}_spec.rb", "w+") do |file|
+    File.open(kata_spec_file_path, "w+") do |file|
       file.write(kata_spec_file_template)
     end
-  end
-
-  def kata_spec_file_template
-    spec_file = <<EOF
-require './katas/#{kata_name}/lib/#{kata_name}'
-
-RSpec.describe ##{kata_name} do
-  subject { #{kata_name} }
-
-
-end
-EOF
   end
 end
