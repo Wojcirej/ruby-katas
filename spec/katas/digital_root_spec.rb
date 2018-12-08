@@ -1,6 +1,6 @@
-require 'digital_root'
+require './katas/digital_root/lib/digital_root'
 
-RSpec.describe "#digital root" do
+RSpec.describe "#digital_root" do
   subject { digital_root(n) }
 
   shared_examples "result" do |n, expected_result|

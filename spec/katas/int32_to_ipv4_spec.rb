@@ -58,7 +58,7 @@ def test_cases
   ]
 end
 
-require 'int32_to_ipv4'
+require './katas/int32_to_ipv4/lib/int32_to_ipv4'
 
 RSpec.describe "#int32_to_ipv4" do
   subject { int32_to_ipv4(int32) }

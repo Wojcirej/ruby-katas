@@ -1,4 +1,4 @@
-require 'rgb'
+require './katas/rgb_to_hex_conversion/lib/rgb'
 
 RSpec.describe "#rgb" do
   subject { rgb(red, green, blue) }

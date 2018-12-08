@@ -1,4 +1,4 @@
-require 'weirdcase'
+require './katas/weird_string_case/lib/weirdcase'
 
 RSpec.describe "#weirdcase" do
   subject { weirdcase(string) }

@@ -1,4 +1,4 @@
-require 'number_in_expanded_form'
+require './katas/number_in_expanded_form/lib/number_in_expanded_form'
 
 RSpec.describe "#number_in_expanded_form" do
   subject { number_in_expanded_form(number) }
