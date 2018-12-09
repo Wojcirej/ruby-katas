@@ -1,4 +1,4 @@
-def rgb(r, g, b)
+def rgb_to_hex_conversion(r, g, b)
   r = set_in_range(r)
   g = set_in_range(g)
   b = set_in_range(b)
