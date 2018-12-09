@@ -1,4 +1,4 @@
-require './katas/tribonacci_sequence/lib/tribonacci'
+require './katas/tribonacci/lib/tribonacci'
 
 RSpec.describe "#tribonacci" do
   subject { tribonacci(signature,  n) }

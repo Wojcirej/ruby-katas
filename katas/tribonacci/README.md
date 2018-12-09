@@ -1,4 +1,4 @@
-# Tribonacci sequence
+# Tribonacci
 
 ### Description
 Well met with Fibonacci bigger brother, AKA Tribonacci.
