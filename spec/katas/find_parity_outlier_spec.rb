@@ -1,7 +1,7 @@
-require './katas/parity_outlier/lib/find_outlier'
+require './katas/find_parity_outlier/lib/find_parity_outlier'
 
-RSpec.describe "#find_outlier" do
-  subject { find_outlier(array) }
+RSpec.describe "#find_parity_outlier" do
+  subject { find_parity_outlier(array) }
 
   shared_examples "result" do |input_array, expected_result|
 
