@@ -1,4 +1,4 @@
-# Sum of odd numbers
+# Row sum of odd numbers
 
 ### Description
 Given the triangle of consecutive odd numbers:
