@@ -1,7 +1,7 @@
-require './katas/weird_string_case/lib/weirdcase'
+require './katas/weird_string_case/lib/weird_string_case'
 
-RSpec.describe "#weirdcase" do
-  subject { weirdcase(string) }
+RSpec.describe "#weird_string_case" do
+  subject { weird_string_case(string) }
 
   shared_examples "result" do |input, expected_result|
 
