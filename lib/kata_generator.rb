@@ -1,11 +1,12 @@
 require_relative 'generator_templates'
-require_relative 'kata_spec_file_template_generator'
+
 class KataGenerator
   include GeneratorTemplates
 
-  def initialize(kata_name, logger, method_arguments = nil)
+  def initialize(kata_name, spec_file_template_generator, logger, method_arguments = nil)
     @kata_name = kata_name
     @logger = logger
+    @spec_file_template_generator = spec_file_template_generator
     @method_arguments = method_arguments
     @root_directory_path = "katas/#{kata_name}"
     @readme_file_path = "katas/#{kata_name}/README.md"
@@ -14,8 +15,8 @@ class KataGenerator
     @kata_spec_file_path = "spec/katas/#{kata_name}_spec.rb"
   end
 
-  def self.call(kata_name, logger, method_arguments = nil)
-    new(kata_name, logger, method_arguments).call
+  def self.call(kata_name, spec_file_template_generator, logger, method_arguments = nil)
+    new(kata_name, spec_file_template_generator, logger, method_arguments).call
   end
 
   def call
@@ -39,7 +40,7 @@ class KataGenerator
 
   attr_reader :kata_name, :logger, :root_directory_path, :readme_file_path,
   :kata_lib_directory_path, :kata_definition_file_path, :kata_spec_file_path,
-  :method_arguments
+  :method_arguments, :spec_file_template_generator
 
   def create_kata_root_directory
     Dir.mkdir(root_directory_path)
@@ -63,7 +64,7 @@ class KataGenerator
 
   def generate_kata_spec_file
     File.open(kata_spec_file_path, "w+") do |file|
-      file.write(KataSpecFileTemplateGenerator.call(kata_name, method_arguments))
+      file.write(spec_file_template_generator.call)
     end
   end
 end

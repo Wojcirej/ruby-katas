@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 require './lib/kata_generator'
+require './lib/kata_spec_file_template_generator'
 require './lib/generator_logger'
-require 'pry'
+
 kata_name = ARGV.shift
 arguments = ARGV
-KataGenerator.call(kata_name, GeneratorLogger.new, arguments)
+spec_file_template_generator = KataSpecFileTemplateGenerator.new(kata_name, arguments)
+KataGenerator.call(kata_name, spec_file_template_generator, GeneratorLogger.new, arguments)
