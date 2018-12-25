@@ -1,4 +1,5 @@
 require_relative 'generator_templates'
+require_relative 'kata_spec_file_template_generator'
 class KataGenerator
   include GeneratorTemplates
 
@@ -62,7 +63,7 @@ class KataGenerator
 
   def generate_kata_spec_file
     File.open(kata_spec_file_path, "w+") do |file|
-      file.write(kata_spec_file_template(method_arguments))
+      file.write(KataSpecFileTemplateGenerator.call(kata_name, method_arguments))
     end
   end
 end

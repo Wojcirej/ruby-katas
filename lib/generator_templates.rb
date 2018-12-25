@@ -23,31 +23,6 @@ end
 EOF
   end
 
-  def kata_spec_file_template(method_arguments)
-    arguments = set_arguments_string(method_arguments)
-    lets = method_arguments.map { |arg| "let(:#{arg}) { #{arg} }" }
-    expected_result = "#" + "{expected_result}"
-    spec_file = <<EOF
-require './katas/#{kata_name}/lib/#{kata_name}'
-
-RSpec.describe "##{kata_name}" do
-  subject { #{kata_name}#{arguments} }
-
-  shared_examples "result" do |#{arguments}, expected_result|
-
-    context do
-      #{lets.join("\n      ")}
-
-      example "returns '#{expected_result}'" do
-        expect(subject).to eq(expected_result)
-      end
-    end
-  end
-
-end
-EOF
-  end
-
   def set_arguments_string(method_arguments)
     method_arguments.empty? ? '' : '(' + method_arguments.join(', ') + ')'
   end
