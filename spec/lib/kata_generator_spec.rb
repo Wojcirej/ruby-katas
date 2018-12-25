@@ -1,23 +1,16 @@
 require './lib/kata_generator'
-require './lib/generator_logger'
-
-class MockLogger
-
-  def log_directory_creation(path)
-  end
-
-  def log_file_generation(path)
-  end
-end
+require './spec/mocks/generator_mock_logger'
+require './spec/mocks/mock_spec_template_generator'
 
 RSpec.describe KataGenerator do
-  let(:logger) { MockLogger.new }
+  let(:logger) { GeneratorMockLogger.new }
+  let(:spec_file_template_generator) { MockSpecTemplateGenerator.new }
   let(:kata_name) { "test_kata" }
 
   describe "#call" do
 
     before do
-      described_class.call(kata_name, logger)
+      described_class.call(kata_name, spec_file_template_generator, logger)
     end
 
     after do

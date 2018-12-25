@@ -3,7 +3,7 @@ require_relative 'generator_templates'
 class KataGenerator
   include GeneratorTemplates
 
-  def initialize(kata_name, spec_file_template_generator, logger, method_arguments = nil)
+  def initialize(kata_name, spec_file_template_generator, logger, method_arguments = [])
     @kata_name = kata_name
     @logger = logger
     @spec_file_template_generator = spec_file_template_generator
@@ -15,7 +15,7 @@ class KataGenerator
     @kata_spec_file_path = "spec/katas/#{kata_name}_spec.rb"
   end
 
-  def self.call(kata_name, spec_file_template_generator, logger, method_arguments = nil)
+  def self.call(kata_name, spec_file_template_generator, logger, method_arguments = [])
     new(kata_name, spec_file_template_generator, logger, method_arguments).call
   end
 

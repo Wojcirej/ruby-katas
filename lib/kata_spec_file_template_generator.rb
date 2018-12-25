@@ -1,11 +1,11 @@
 class KataSpecFileTemplateGenerator
 
-  def initialize(kata_name, method_arguments = nil)
+  def initialize(kata_name, method_arguments = [])
     @kata_name = kata_name
     @method_arguments = method_arguments
   end
 
-  def self.call(kata_name, method_arguments = nil)
+  def self.call(kata_name, method_arguments = [])
     new(kata_name, method_arguments).call
   end
 
