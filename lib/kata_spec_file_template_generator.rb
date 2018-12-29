@@ -1,5 +1,7 @@
 class KataSpecFileTemplateGenerator
 
+  attr_reader :kata_name, :method_arguments
+
   def initialize(kata_name, method_arguments = [])
     @kata_name = kata_name
     @method_arguments = method_arguments
@@ -32,10 +34,6 @@ end
 EOF
   end
 
-  private
-
-  attr_reader :kata_name, :method_arguments
-
   def arguments_for_subject
     @arguments ||= method_arguments.empty? ? '' : '(' + method_arguments.join(', ') + ')'
   end
@@ -49,10 +47,10 @@ EOF
   end
 
   def context_description
-    @context_description ||= method_arguments.map { |arg| "#{arg} = " + "#" + "{arg}" }.join(', ')
+    @context_description ||= method_arguments.map { |arg| "#{arg} = \'\#{arg}\'" }.join(', ')
   end
 
   def expected_result
-    @expected_result ||= "#" + "{expected_result}"
+    @expected_result ||= "\#{expected_result}"
   end
 end
