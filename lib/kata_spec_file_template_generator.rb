@@ -47,7 +47,7 @@ EOF
   end
 
   def context_description
-    @context_description ||= method_arguments.map { |arg| "#{arg} = \'\#{arg}\'" }.join(', ')
+    @context_description ||= method_arguments.map { |arg| "#{arg} = \'\#{#{arg}}\'" }.join(', ')
   end
 
   def expected_result

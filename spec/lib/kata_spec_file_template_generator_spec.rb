@@ -78,7 +78,7 @@ RSpec.describe KataSpecFileTemplateGenerator do
     context "when there are method arguments" do
 
       it "returns comma separated arguments, with syntax including its values" do
-        expect(subject.context_description).to eq("arg1 = '\#{arg}', arg2 = '\#{arg}'")
+        expect(subject.context_description).to eq("arg1 = '\#{arg1}', arg2 = '\#{arg2}'")
       end
     end
   end
