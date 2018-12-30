@@ -5,4 +5,7 @@ class GeneratorMockLogger
 
   def log_file_generation(path)
   end
+
+  def log_error_occurrence
+  end
 end

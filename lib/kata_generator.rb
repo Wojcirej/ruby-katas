@@ -34,6 +34,9 @@ class KataGenerator
 
     generate_kata_spec_file
     logger.log_file_generation(kata_spec_file_path)
+  rescue => e
+    clean_up
+    logger.log_error_occurrence
   end
 
   private
@@ -65,6 +68,16 @@ class KataGenerator
   def generate_kata_spec_file
     File.open(kata_spec_file_path, "w+") do |file|
       file.write(spec_file_template_generator.call)
+    end
+  end
+
+  def clean_up
+    if Dir.exists?("katas/#{kata_name}")
+      FileUtils.rm_rf("katas/#{kata_name}")
+    end
+
+    if File.exist?("spec/katas/#{kata_name}_spec.rb")
+      File.delete("spec/katas/#{kata_name}_spec.rb")
     end
   end
 end
