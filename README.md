@@ -1,5 +1,5 @@
-# Katas
-My solutions of katas available on codewars.com gathered in one place
+# Ruby katas
+My solutions of katas available on codewars.com gathered in one place - Ruby Edition.
 [![CodeWars](https://www.codewars.com/users/Wojcirej/badges/large)](https://www.codewars.com/users/Wojcirej/badges/large "My Honor Badge")
 # Launch tests
 `rspec`
